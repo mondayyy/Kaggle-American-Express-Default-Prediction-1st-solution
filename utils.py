@@ -268,10 +268,6 @@ def Lgb_train_and_predict(
                 output_root + "/experiment_log.csv", index=False, header=None, mode="a"
             )
 
-    ## Save model code
-    filename = 'finalized_model.sav'
-    pickle.dump(model, open(filename, 'wb'))
-
     if test is not None:
         sub = test[[id_name]]
         sub["prediction"] = 0
