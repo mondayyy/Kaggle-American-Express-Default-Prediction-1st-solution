@@ -284,9 +284,8 @@ def Lgb_train_and_predict(
         os.rename(output_path, output_root + run_id + "/")
     return oof, sub, (mean_valid_metric, global_valid_metric)
 
-def Lgb_predict(
-        test, config, output_root="./output/"
-):
+
+def Lgb_predict(test, config, output_root="./output/"):
     if not run_id:
         run_id = "run_lgb_" + datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
         while os.path.exists(output_root + run_id + "/"):
@@ -315,7 +314,8 @@ def Lgb_predict(
         )
     if args.save_dir in output_path:
         os.rename(output_path, output_root + run_id + "/")
-    
+
+
 class TaskDataset:
     def __init__(self, df_series, df_feature, uidxs, df_y=None):
         self.df_series = df_series

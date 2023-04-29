@@ -13,6 +13,7 @@ from sklearn.preprocessing import LabelEncoder
 
 from utils import *
 from model import *
+from A1_models import *
 
 root = args.root
 seed = args.seed
@@ -100,18 +101,26 @@ lgb_config["feature_name"] = [
     for col in train.columns
     if col not in [id_name, label_name, "S_2"] and "target" not in col
 ]
-model_list = Lgb_train(
+
+model = Lgb_model(
     train, test, lgb_config, aug=None, run_id="LGB_with_manual_feature"
 )
-for model in model_list: 
-    explainer = shap.LinearExplainer(model, train, feature_perturbation="interventional")
+explainer = shap.LinearExplainer(
+        model, train, feature_perturbation="interventional"
+)
+shap_values = explainer(test)
+shap.plots.waterfall(shap_values[0])
 
 lgb_config["feature_name"] = [
     col for col in train.columns if col not in [id_name, label_name, "S_2"]
 ]
 
-model_list = Lgb_train(
+model = Lgb_model(
     train, test, lgb_config, aug=None, run_id="LGB_with_manual_feature_and_series_oof"
 )
-for model in model_list: 
-    explainer = shap.LinearExplainer(model, train, feature_perturbation="interventional")
+explainer = shap.LinearExplainer(
+  model, train, feature_perturbation="interventional"
+)
+shap_values = explainer(test)
+shap.plots.waterfall(shap_values[0])
+
