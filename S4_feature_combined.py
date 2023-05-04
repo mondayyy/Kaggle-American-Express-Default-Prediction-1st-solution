@@ -235,6 +235,8 @@ for df in dfs:
             # v_max = df[col].max()
             # df[col] = (df[col]-v_min+eps) / (v_max-v_min+eps)
             vc = df[col].value_counts().sort_index()
+            if len(vc) <= 0:
+                continue
             bins = GreedyFindBin(vc.index.values, vc.values, len(vc), 255, vc.sum())
             df[col] = np.digitize(df[col], [-np.inf] + bins)
             df.loc[df[col] == len(bins) + 1, col] = 0
