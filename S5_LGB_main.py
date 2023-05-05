@@ -21,8 +21,11 @@ df = pd.read_feather(f"{root}/all_feature.feather")
 
 train_y = pd.read_csv(f"{root}/train_labels.csv")
 train = df[: train_y.shape[0]]
+# train.columns[1:2000]
+train=train[train.columns[:2000]]
 train["target"] = train_y["target"]
 test = df[train_y.shape[0] :].reset_index(drop=True)
+test=test[test.columns[:2000]]
 del df
 
 print(train.shape, test.shape)
