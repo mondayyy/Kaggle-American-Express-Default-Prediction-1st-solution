@@ -16,7 +16,7 @@ root = args.root
 seed = args.seed
 
 df = pd.read_feather("./input/nn_series.feather")
-y = pd.read_csv("./input/train_labels.csv")
+y = pd.read_csv("./input/train_label.csv")
 
 f = pd.read_feather("./input/nn_all_feature.feather")
 df["idx"] = df.index

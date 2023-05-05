@@ -46,7 +46,7 @@ cat_features = [
 eps = 1e-3
 
 
-train_y = pd.read_csv(f"{root}/train_labels.csv")
+train_y = pd.read_csv(f"{root}/train_label.csv",nrows=5000)
 train = train.merge(train_y, how="left", on=id_name)
 
 print(train.shape, test.shape)

@@ -6,7 +6,7 @@
 
 # Data uncompression
 
-1. put train_data.csv, train_labels.csv, test_data.csv in ./input/
+1. put train_data.csv, train_label.csv, test_data.csv in ./input/
 
 # Running
 
